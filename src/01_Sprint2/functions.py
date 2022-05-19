@@ -27,7 +27,13 @@ def og_float_column_list():
     return float_list
 
 
-#functions/methods--------------------------------------------------------------------------------------------------------------
+def new_column_list():
+    new_list = ['date', 'time', 'co_gt', 'pt08_s1_co', 'nmhc_gt', 'c6h6_gt',
+                'pt08_s2_nmhc', 'nox_gt', 'pt08_s3_nox', 'no2_gt', 'pt08_s4_no2',
+                'pt08_s5_o3', 't', 'rh', 'ah']
+    return new_list
+
+#functions----------------------------------------------------------------------------------------------------------------------
 
 # correct datetime
 def df_correct_datetime(dframe):
@@ -65,6 +71,13 @@ def dfs_concat(*dfs):
     df = pd.concat(dfs)
     df.reset_index(drop = True, inplace = True)
     return df
+
+#drop unknown columns (original and prepared)
+def df_drop_unknown_columns(dframe):
+    for x in dframe.columns:
+        if not change_column(x) in new_column_list():
+            dframe.drop(columns= [x], inplace = True)
+    return dframe
 
 # JSON to df-------------------------------------------
 def json_to_prepared_df(json_path, smart = True):
