@@ -36,7 +36,8 @@ def new_column_list():
 #functions----------------------------------------------------------------------------------------------------------------------
 
 # correct datetime
-def df_correct_datetime(dframe):
+def df_correct_datetime(dframe_in):
+    dframe = dframe_in
     dframe["Date"] = dframe["Date"] + " "+ dframe["Time"]
     dframe.drop(columns= ["Time"], inplace = True)
     dframe["Date"] = pd.to_datetime(dframe["Date"], format = "%d/%m/%Y %H.%M.%S")
@@ -72,11 +73,23 @@ def dfs_concat(*dfs):
     df.reset_index(drop = True, inplace = True)
     return df
 
+<<<<<<< HEAD
 #drop unknown columns (original and prepared)
 def df_drop_unknown_columns(dframe):
     for x in dframe.columns:
         if not change_column(x) in new_column_list():
             dframe.drop(columns= [x], inplace = True)
+=======
+# Removing values from 'df_in' that do not meet min/max-definition in Featurelist 'df_fl_in'
+def filter_plausible(df_in, df_fl_in):
+    dframe = df_in
+    df_fl = df_fl_in
+    for ind in df_fl.index:
+        if ind != 'month' and ind != 'hour':        
+            min = df_fl.loc[ind].at['min']
+            max = df_fl.loc[ind].at['max']
+            dframe[ind] = dframe[ind][(dframe[ind] >= min) & (dframe[ind] <= max)]
+>>>>>>> 4b00ef6d656e9df84cd47c299dac7f834f3d9c0d
     return dframe
 
 # JSON to df-------------------------------------------
