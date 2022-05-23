@@ -91,6 +91,13 @@ def filter_plausible(df_in, df_fl_in):
     return dframe
 
 # JSON to df-------------------------------------------
+
+def json_to_correct_df(json_path, smart = True):
+    df = json_to_prepared_df(json_path, smart)
+    df = 
+    return df
+
+
 def json_to_prepared_df(json_path, smart = True):
     df = json_to_df(json_path, smart)
     df = df_correct_datetime(df)
