@@ -94,7 +94,7 @@ def filter_plausible(df_in, df_fl_in):
 
 def json_to_correct_df(json_path, smart = True):
     df = json_to_prepared_df(json_path, smart)
-    df = 
+    #df = filter_plausible(df_in, df_fl_in)
     return df
 
 
