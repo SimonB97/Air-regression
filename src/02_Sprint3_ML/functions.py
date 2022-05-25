@@ -4,7 +4,7 @@ import orga_functions as org
 
 #static_values/lists etc. --------------------------------------------------------------------------------------------------------
 
-#replacement for na_values
+#placeholder for na_values
 def na_value():
     return -1024000
 
@@ -78,7 +78,36 @@ def df_drop_unknown_columns(dframe):
     for x in dframe.columns:
         if not change_column(x) in new_column_list():
             dframe.drop(columns= [x], inplace = True)
-            
+                     
+
+#missing value treatment----------------------------------------------------------------------
+def df_replace_missing(dframe,feature_df):
+    
+    list_col_mean = ["co_gt","pt08_s1_co", "c6h6_gt", "pt08_s2_nmhc", "pt08_s3_nox", "no2_gt"]
+    list_col_hist = ["nox_gt","pt08_s4_no2", "pt08_s5_o3", "t", "rh", "ah"]
+    
+    dframe.drop(columns =["nmhc_gt"], inplace =True)
+    
+    dframe = filter_plausible(dframe, feature_df)
+    for m in list_col_mean:
+        dframe[m] = column_replace_na_by_mean(dframe, feature_df, m)
+    for h in list_col_hist:
+        dframe[h] = column_replace_na_by_hist(dframe,feature_df, h)
+    
+    return dframe
+        
+
+# methode - replacement of NaN values by mean
+def column_replace_na_by_mean(dframe,feature_df, column):
+    dframe[column] = dframe[column].fillna(feature_df.loc[column]["mean"])
+    return dframe[column]
+
+# methode - replacement of NaN values by historical data
+def column_replace_na_by_hist(dframe,feature_df, column):
+    dframe[column] = dframe[column].fillna(method= 'ffill')
+    return dframe[column]
+
+
 # Removing values from 'df_in' that do not meet min/max-definition in Featurelist 'df_fl_in'
 def filter_plausible(df_in, df_fl_in):
     dframe = df_in
@@ -90,11 +119,11 @@ def filter_plausible(df_in, df_fl_in):
             dframe[ind] = dframe[ind][(dframe[ind] >= min) & (dframe[ind] <= max)]
     return dframe
 
-# JSON to df-------------------------------------------
+# JSON to df--------------------------------------------------------
 
-def json_to_correct_df(json_path, smart = True):
+def json_to_correct_df(json_path,feature_df, smart = True):
     df = json_to_prepared_df(json_path, smart)
-    #df = filter_plausible(df_in, df_fl_in)
+    df = df_replace_missing(df, feature_df)
     return df
 
 
