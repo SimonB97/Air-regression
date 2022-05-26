@@ -73,13 +73,12 @@ def dfs_concat(*dfs):
     df.reset_index(drop = True, inplace = True)
     return df
 
-<<<<<<< HEAD
 #drop unknown columns (original and prepared)
 def df_drop_unknown_columns(dframe):
     for x in dframe.columns:
         if not change_column(x) in new_column_list():
             dframe.drop(columns= [x], inplace = True)
-=======
+            
 # Removing values from 'df_in' that do not meet min/max-definition in Featurelist 'df_fl_in'
 def filter_plausible(df_in, df_fl_in):
     dframe = df_in
@@ -89,7 +88,6 @@ def filter_plausible(df_in, df_fl_in):
             min = df_fl.loc[ind].at['min']
             max = df_fl.loc[ind].at['max']
             dframe[ind] = dframe[ind][(dframe[ind] >= min) & (dframe[ind] <= max)]
->>>>>>> 4b00ef6d656e9df84cd47c299dac7f834f3d9c0d
     return dframe
 
 # JSON to df-------------------------------------------
