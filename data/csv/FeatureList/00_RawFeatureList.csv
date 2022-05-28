@@ -1,0 +1,16 @@
+names;mean;min;25%;50%;75%;max;erläuterung
+co_gt;2.168604269293926;0.1;1.1;1.8;2.9;11.9;Stuendlich gemittelte CO-Konzentration
+pt08_s1_co;1098.3034115968348;647.0;932.0;1061.0;1234.0;2040.0;Stuendlich gemittelte Sensorreaktion (nominell auf CO ausgerichtet) (Zinnoxid)
+nmhc_gt;218.60766629086808;7.0;66.0;145.0;297.0;1189.0;Stuendlich gemittelte Gesamtkonzentration an nicht-metanischem Kohlenwasserstoff
+c6h6_gt;10.458204695810096;0.1;4.7;8.6;14.4;63.7;Stuendlich gemittelte Benzolkonzentration
+pt08_s2_nmhc;953.5794525878842;383.0;749.0;925.0;1130.0;2214.0;Stuendlich gemittelte Sensorreaktion (nominell auf NMHC ausgerichtet) (Titandioxid)
+nox_gt;232.36007159127888;2.0;89.0;164.0;303.75;1479.0;Echte Stuendlich gemittelte NOx-Konzentration
+pt08_s3_nox;848.7626151251784;322.0;672.0;818.0;984.0;2683.0;Suendlich gemitteltes Sensoransprechverhalten (nominell auf NOx ausgerichtet)
+no2_gt;106.25183135275924;2.0;73.0;103.0;132.0;333.0;Stuendlich gemittelte NO2-Konzentration
+pt08_s4_no2;1507.3528343494618;657.0;1305.0;1508.0;1707.0;2775.0;Stuendlich gemittelte Sensorreaktion (nominell auf NO2 ausgerichtet) (Wolframoxid)
+pt08_s5_o3;1024.2000259437023;253.0;737.0;962.0;1272.0;2523.0;Stuendlich gemitteltes Sensoransprechverhalten (nominell O3-bezogen) (Indiumoxid)
+t;19.476040991049437;0.3;13.1;19.3;25.4;44.6;Temperatur
+rh;48.969243741081726;9.2;35.5;49.4;62.1;88.7;Relative Luftfeuchtigkeit
+ah;1.082098624983781;0.1988;0.8167;1.0468;1.3713;2.231;Absolute Luftfeuchtigkeit
+month;6.928525100531846;1.0;4.0;7.0;10.0;12.0;Monate der Erfassung
+hour;11.488519911791412;0.0;6.0;11.0;17.0;23.0;Stunden der erfassung
