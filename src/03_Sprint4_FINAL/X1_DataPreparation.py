@@ -35,6 +35,7 @@ def df_change_columns(dframe):
     return dframe
 
 
+# change a single column name
 def change_column(name):
     name = name.replace("(", "_")
     name = name.replace(".", "_")
