@@ -19,7 +19,7 @@ def add_new_df(new_dframe, df_continuous, df_continous_path):
     return whole_df
 
 
-# JSON to df for Forecasting -------------------------------------------------------------------------------------
+#JSON to df for Forecasting -------------------------------------------------------------------------------------
 
 # df with results of the prediction
 def pred_json_df(json_path, model_clf):
@@ -27,20 +27,20 @@ def pred_json_df(json_path, model_clf):
     return forecast.prediction_df(x_dframe, model_clf)
 
 
-# df ready for the ML-model----------------------------------------------
-def json_to_ml_features_df(json_path, model_clf, df_continous_path = "03_AirQuality_continuous.csv", feature_df_path = "02_AlleFeatureList.csv", smart = True):
+#df ready for the ML-model----------------------------------------------
+def json_to_ml_features_df(json_path, model_clf, df_continous_path = "03_AirQuality_continuous.csv", feature_df_path = "02_AlleFeatureList.csv"):
     df = json_to_correct_df(json_path, df_continous_path, feature_df_path)
     df.set_index("date", inplace = True)
     df = forecast.df_to_feature_columns(model_clf, df)
     return df
 
 
-# JSON to clean DataFrame -----------------------------------------------------------------------------------------
+#JSON to clean DataFrame -----------------------------------------------------------------------------------------
 
-# prepared_df with replaced missing values
-def json_to_correct_df(json_path, df_continous_path = "03_AirQuality_continuous.csv", feature_df_path = "02_AlleFeatureList.csv" , smart = True):
+#prepared_df with replaced missing values
+def json_to_correct_df(json_path, df_continous_path = "03_AirQuality_continuous.csv", feature_df_path = "02_AlleFeatureList.csv"):
     #data preparation
-    df = json_to_prepared_df(json_path, smart)
+    df = json_to_prepared_df(json_path)
     
     #DataFrame with the whole data set
     df_continuous = pd.read_csv(org.path("03_AirQuality_continuous.csv"), sep=';')
@@ -55,9 +55,9 @@ def json_to_correct_df(json_path, df_continous_path = "03_AirQuality_continuous.
 
 
 
-# df with correct datetime and other datapes; column name with small letters and droped unknown columns
-def json_to_prepared_df(json_path, smart = True):
-    df = json_to_df(json_path, smart)
+#df with correct datetime and other datapes; column name with small letters and droped unknown columns
+def json_to_prepared_df(json_path):
+    df = json_to_df(json_path)
     df = data_prep.data_preparation_df(df)
     return df
 
@@ -95,7 +95,7 @@ def df_replace_missing_continuous(new_df, dframe_continuous, feature_df_path = "
     return new_df
 
 
-# methode - replacement of NaN values by historical data
+#methode - replacement of NaN values by historical data
 def column_replace_na_by_hist(new_dframe,dframe_continuous, column):
     
     #last entries

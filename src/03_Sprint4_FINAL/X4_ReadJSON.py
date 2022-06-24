@@ -24,7 +24,7 @@ def pred_json_df(json_path, model_clf):
 
 
 # df ready for the ML-model----------------------------------------------
-def json_to_ml_features_df(json_path, model_clf,feature_df_path = "02_AlleFeatureList.csv", smart = True):
+def json_to_ml_features_df(json_path, model_clf,feature_df_path = "02_AlleFeatureList.csv"):
     df = json_to_correct_missing_df(json_path, feature_df_path)
     df.set_index("date", inplace = True)
     df = forecast.df_to_feature_columns(model_clf, df)
@@ -34,8 +34,8 @@ def json_to_ml_features_df(json_path, model_clf,feature_df_path = "02_AlleFeatur
 # JSON to clean DataFrame ---------------------------------------------------------------------------------------------
 
 # prepared_df with replaced missing values
-def json_to_correct_missing_df(json_path,feature_df_path = "02_AlleFeatureList.csv" , smart = True):
-    df = json_to_prepared_df(json_path, smart)
+def json_to_correct_missing_df(json_path,feature_df_path = "02_AlleFeatureList.csv"):
+    df = json_to_prepared_df(json_path)
     df = mvtreatment.df_replace_missing(df, feature_df_path)
     return df
 
